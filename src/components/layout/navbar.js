@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   header: {
-    backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%", 
+    backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
     // backgroundColor: "transparent",
     // boxShadow: "0px 0px 0px 0px"
     // backgroundColor: "black"
@@ -68,7 +68,7 @@ const Navbar = () => {
         position="static"
         className={classes.appBar}
         style={{
-          backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%", 
+          backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
         }}
         >
         <Toolbar>
