@@ -1,22 +1,29 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, makeStyles} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import SearchIcon from '@material-ui/icons/Search';
+import TimelineIcon from '@material-ui/icons/Timeline';
+import AssessmentIcon from '@material-ui/icons/Assessment';
+import { CallMissedSharp } from '@material-ui/icons';
+import { findByLabelText, getRoles } from '@testing-library/react';
 
-const Sidebar = () => {
+
+const Sidebar = (props) => {
   return (
-    <Drawer variant="permanent">
-      <List >
+    <Drawer variant="permanent" >
+      <List className={props.className}>
         <ListItem button>
-          <ListItemText primary="ABC" />
+          <SearchIcon />
         </ListItem>
         <ListItem button>
-          <ListItemText primary="ABC" />
+          <HomeIcon />
         </ListItem>
         <ListItem button>
-          <ListItemText primary="ABC" />
+          <TimelineIcon />
         </ListItem>
         <ListItem button>
-          <ListItemText primary="ABC" />
+          <AssessmentIcon />
         </ListItem>
       </List>
     </Drawer>

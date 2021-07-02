@@ -37,7 +37,7 @@ const useStyles = makeStyles(theme => ({
 
 //background-color: #50BDE4
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -66,13 +66,14 @@ const Navbar = () => {
       
       <AppBar 
         position="static"
-        className={classes.appBar}
+        className={props.className}
         style={{
           backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
         }}
         >
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
+          onClick={props.onClick}>
             <MenuIcon />
           </IconButton>
           
