@@ -8,22 +8,28 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import { CallMissedSharp } from '@material-ui/icons';
 import { findByLabelText, getRoles } from '@testing-library/react';
 
+const useStyles = makeStyles(theme => ({
+  list: {
+    alignItems: 'center',
+  },
+}));
 
 const Sidebar = (props) => {
+  const classes = useStyles();
   return (
     <Drawer variant="permanent" >
-      <List className={props.className}>
+      <List className={classes.list}>
         <ListItem button>
-          <SearchIcon />
+          <SearchIcon fontSize='large'/>
         </ListItem>
         <ListItem button>
-          <HomeIcon />
+          <HomeIcon fontSize='large'/>
         </ListItem>
         <ListItem button>
-          <TimelineIcon />
+          <TimelineIcon fontSize='large'/>
         </ListItem>
         <ListItem button>
-          <AssessmentIcon />
+          <AssessmentIcon fontSize='large'/>
         </ListItem>
       </List>
     </Drawer>
