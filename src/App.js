@@ -11,8 +11,12 @@ const drawerWidth = 64;
 
 const useStyles = makeStyles(theme => ({
   appBarShift: {
-    marginLeft: 64,
+    marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`
+  },
+  content: {
+    marginLeft: drawerWidth,
+    padding: 15,
   },
 }));
 
@@ -24,29 +28,26 @@ function App() {
     setDrawerOpen(!drawerOpen);
   }
 
-  if (!drawerOpen) {
-    return (    
-      <div className="App">      
-        { <Navbar onClick={handleDrawerOpen}/> }
-        <br></br>
-        { <CardGrid />}
-        {/* Currently the sidebar is causing overlay issues. Uncomment the next line to see its behaviour. Reference: https://material-ui.com/components/drawers/ */}
-        {/* <Sidebar/>       */}
-        {/* <SidebarTemp /> */}
-      </div>    
-    );
-  } else {
-    return (    
-      <div className="App">      
-        { <Navbar className={classes.appBarShift} onClick={handleDrawerOpen}/> }
-        <br></br>
-        { <CardGrid />}
-        {/* Currently the sidebar is causing overlay issues. Uncomment the next line to see its behaviour. Reference: https://material-ui.com/components/drawers/ */}
-        { <Sidebar className={classes.drawer}/> }
-        {/* <SidebarTemp /> */}
-      </div>    
-    );
-  }
+  const page1 = (
+  <div className="App"> 
+    { <Navbar onClick={handleDrawerOpen}/> }
+    <br></br>
+    { <CardGrid />}
+  </div> );
+
+  const page2 = (
+    <div className="App"> 
+      { <Navbar className={classes.appBarShift} onClick={handleDrawerOpen}/> }
+      <br></br>
+      { <Sidebar /> }
+      <main className={classes.content}>
+        {<CardGrid />}
+      </main>
+  </div> );
+
+  return (
+    drawerOpen ? page2 : page1
+  );
 
 }
 
