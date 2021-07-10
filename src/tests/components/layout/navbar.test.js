@@ -3,7 +3,7 @@
 
 import { React } from 'react';
 import { render, screen } from "@testing-library/react";
-import Navbar from '../../../components/layout/navbar';
+import Navbar from '../../../components/layout/Navbar';
 
 describe('Navbar', () => {
         
@@ -12,10 +12,12 @@ describe('Navbar', () => {
         render(<Navbar />);
         
         //ensure that the navbar has been rendered and the Document Object Model contains the word "Dash"
-        const res = screen.getByText("Dash")
+        const dash = screen.getByText("CloudDash");
+        const signup = screen.getByText("Signup");
         
         //Use Jest's toBeTruthy function to determine that the "res" object is not undefined.
-        expect(res).toBeTruthy();
+        expect(dash).toBeTruthy();
+        expect(signup).toBeTruthy();
     })
 
 })
