@@ -1,26 +1,14 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer';
-import { List, ListItem, ListItemText, makeStyles} from '@material-ui/core';
+import { List, ListItem, makeStyles} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import SearchIcon from '@material-ui/icons/Search';
 import TimelineIcon from '@material-ui/icons/Timeline';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-import { CallMissedSharp } from '@material-ui/icons';
-import { findByLabelText, getRoles } from '@testing-library/react';
 
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
   Link
 } from 'react-router-dom';
-
-import {
-  Main,
-  Page1,
-  Page2,
-  HttpNotFound
-} from './Routes';
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -32,7 +20,6 @@ const Sidebar = (props) => {
   const classes = useStyles();
   return (
     <Drawer variant="permanent" >
-      <Router>        
         <List className={classes.list}>
           <ListItem button>
             <Link to="/">
@@ -50,10 +37,11 @@ const Sidebar = (props) => {
             </Link>
           </ListItem>
           <ListItem button>
-            <AssessmentIcon fontSize='large'/>
+            <Link to="/page3">
+              <AssessmentIcon fontSize='large'/>
+            </Link>
           </ListItem>
         </List>
-      </Router>
     </Drawer>
   );
 }

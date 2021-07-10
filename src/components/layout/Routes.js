@@ -28,6 +28,14 @@ export function Page2() {
     );
 }
 
+export function Page3() {
+    return(
+        <>
+        <Typography align="center" variant="h1">Hey, welcome to Page3.</Typography>
+        </>
+    );
+}
+
 export function HttpNotFound() {
     let location = useLocation();
     return(

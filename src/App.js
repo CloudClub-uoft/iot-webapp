@@ -1,26 +1,23 @@
 import React from 'react';
 import Sidebar from './components/layout/sidebar';
 import Navbar from './components/layout/navbar';
-
-import SidebarTemp from './components/layout/SidebarTemp';
 import { makeStyles } from '@material-ui/core';
-
-import CardGrid from './components/layout/cards/CardGrid';
 
 import {
   BrowserRouter as Router,
   Switch,
-  Route
+  Route,
 } from 'react-router-dom';
 
 import {
   Main,
   Page1,
   Page2,
+  Page3,
   HttpNotFound
 } from './components/layout/Routes';
 
-const drawerWidth = 64;
+const drawerWidth = 64; // px
 
 const useStyles = makeStyles(theme => ({
   appBarShift: {
@@ -29,10 +26,10 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     marginLeft: drawerWidth,
-    padding: 15,
   },
 }));
 
+// Main App
 function App() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const classes = useStyles();
@@ -41,13 +38,13 @@ function App() {
     setDrawerOpen(!drawerOpen);
   }
 
-  const page1 = (
+  const closedPage = (
     <div>
       <Navbar onClick={handleDrawerOpen}/>
     </div>
   );
 
-  const page2 = (
+  const openPage = (
     <div>
       <Navbar className={classes.appBarShift} onClick={handleDrawerOpen}/>
       <Sidebar /> 
@@ -56,34 +53,37 @@ function App() {
 
   return (
     <div className="App"> 
-      { drawerOpen ? page2 : page1 }
-      <br></br>
-      <main className={ drawerOpen ? classes.content : "" }>
-        <RouterSwitch />
-      </main>
+      <Router>
+        { drawerOpen ? openPage : closedPage }
+        <br></br>
+        <main className={ drawerOpen ? classes.content : "" }>
+          <RouterSwitch />
+        </main>
+      </Router>
     </div>
   );
-
 }
 
+// Routes for react-router-dom
 const RouterSwitch = () => {
   return (
-    <Router>
-        <Switch>
-          <Route exact path="/">
-            <Main />
-          </Route>
-          <Route path="/page1">
-            <Page1 />
-          </Route>
-          <Route path="/page2">
-            <Page2 />
-          </Route>
-          <Route path="*">
-            <HttpNotFound />  
-          </Route>
-        </Switch>
-      </Router>
+    <Switch>
+      <Route exact path="/">
+        <Main />
+      </Route>
+      <Route path="/page1">
+        <Page1 />
+      </Route>
+      <Route path="/page2">
+        <Page2 />
+      </Route>
+      <Route path="/page3">
+        <Page3 />
+      </Route>
+      <Route path="*">
+        <HttpNotFound />  
+      </Route>
+    </Switch>
   );
 }
 
