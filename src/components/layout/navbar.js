@@ -8,9 +8,9 @@ import Button from '@material-ui/core/Button';
 
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
+// import Switch from '@material-ui/core/Switch';
+// import FormControlLabel from '@material-ui/core/FormControlLabel';
+// import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   header: {
-    backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%", 
+    backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
     // backgroundColor: "transparent",
     // boxShadow: "0px 0px 0px 0px"
     // backgroundColor: "black"
@@ -37,15 +37,16 @@ const useStyles = makeStyles(theme => ({
 
 //background-color: #50BDE4
 
-const Navbar = () => {
+const Navbar = (props) => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [signup, setSignup] = React.useState(false);
   const open = Boolean(anchorEl);
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -54,6 +55,10 @@ const Navbar = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleSignup = () => {
+    setSignup(true);
+  }
 
   return (
     <div className={classes.root}>
@@ -66,13 +71,19 @@ const Navbar = () => {
       
       <AppBar 
         position="static"
-        className={classes.appBar}
+        className={props.className}
         style={{
-          backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%", 
+          backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
         }}
         >
         <Toolbar>
-          <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+          <IconButton 
+            edge="start" 
+            className={classes.menuButton} 
+            color="inherit" 
+            aria-label="menu"
+            onClick={props.onClick}
+          >
             <MenuIcon />
           </IconButton>
           
@@ -124,6 +135,9 @@ const Navbar = () => {
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>Account Settings</MenuItem>
                 </Menu>
+                <Button edge="end" color="inherit" onClick={handleSignup}>
+                  Signup
+                </Button>
             </div>
           )}
         </Toolbar>
@@ -131,39 +145,5 @@ const Navbar = () => {
     </div>
   );
 };
-
-// const Navbar = () => {
-    
-//   const classes = useStyles();
-
-//   //Component state variables?
-//   const [setOpen] = useState(false);
-
-//   const handleOpen = () => {
-//     setOpen(true);
-//   };
-  
-//   return (
-//     <AppBar position="static">
-//       <Toolbar>
-//         <IconButton
-//           edge="start"
-//           color="inherit"
-//           aria-label="menu"
-//           className={classes.menuButton}
-//           id="navbar"
-//         >        
-//         </IconButton>
-//         <Typography variant="h6" className={classes.title}>
-//           Dash
-//         </Typography>
-//         <Button edge="end" color="inherit" onClick={handleOpen}>
-//           Signup
-//         </Button>
-//       </Toolbar>      
-//     </AppBar>
-//   );
-
-// };
 
 export default Navbar;
