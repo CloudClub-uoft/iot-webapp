@@ -103,7 +103,7 @@ export default function Register() {
 // Use /device/register route to register device with MAC address and Name provided
 const fetch_api_key = (deviceId, friendlyName, setApiKeyValue) => {
     const server_ip = 'localhost'; 
-    const register_url = `http://${server_ip}:3000/device/register`;
+    const register_url = `http://${server_ip}:80/device/register`;
     const options = {
         method: 'POST',
         headers: { 
