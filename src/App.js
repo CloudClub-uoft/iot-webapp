@@ -26,6 +26,12 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     marginLeft: drawerWidth,
+    paddingLeft: 12,
+    paddingRight: 12,
+  },
+  contentFull: {
+    paddingLeft: 12, 
+    paddingRight: 12,
   },
 }));
 
@@ -56,7 +62,7 @@ function App() {
       <Router>
         { drawerOpen ? openPage : closedPage }
         <br></br>
-        <main className={ drawerOpen ? classes.content : "" }>
+        <main className={ drawerOpen ? classes.content : classes.contentFull }>
           <RouterSwitch />
         </main>
       </Router>
