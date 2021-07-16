@@ -128,13 +128,6 @@ const fetch_api_key = (deviceId, friendlyName, setApiKeyValue) => {
             api_key_text_field.innerHTML = "Handle this error better";
         }
     })
-    .then(() => {
-        // console.log(fetched);
-        // let api_key_text_field = document.getElementById('api-key-text-field');
-        // TODO: set text box to API key
-
-
-    })
     .catch(err => {
         console.error(err);
     });
