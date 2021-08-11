@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography';
 
 import CardGrid from './cards/CardGrid';
+import Device from './Device';
 
 export function Main() {
     return (
@@ -15,7 +16,8 @@ export function Main() {
 export function Page1() {
     return(
         <>
-        <Typography align="center" variant="h1">Hey, welcome to Page1.</Typography>
+        <Typography align="center" variant="h2">Online Devices</Typography>
+        <Device />
         </>
     );
 }
