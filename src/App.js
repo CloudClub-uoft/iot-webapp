@@ -77,7 +77,7 @@ const RouterSwitch = () => {
       <Route exact path="/">
         <Main />
       </Route>
-      <Route path="/page1">
+      <Route path="/device">
         <Page1 />
       </Route>
       <Route path="/page2">
@@ -90,6 +90,7 @@ const RouterSwitch = () => {
         <HttpNotFound />  
       </Route>
     </Switch>
+
   );
 }
 

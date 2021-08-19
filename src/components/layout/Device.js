@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         width: '100%',
         maxWidth: 360,
-        backroundColor: theme.palette.background.paper,
+        backroundColor: 'black',
         margin: "auto",
         textAlign: "center"
     },
@@ -28,31 +28,31 @@ export default function DeviceList() {
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online" />
+                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
             </ListItem>
             <ListItem>
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online" />
+                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
             </ListItem>
             <ListItem>
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online" />
+                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
             </ListItem>
             <ListItem>
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online" />
+                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
             </ListItem>
             <ListItem>
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online" />
+                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
             </ListItem>
         </List>
         </>
