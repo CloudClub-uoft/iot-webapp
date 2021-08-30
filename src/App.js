@@ -64,6 +64,8 @@ function App() {
       .then(json => {
         if (json["message"] === "Login Successful!") {
           setJwt(json["token_i"]);
+          setEmail("");
+          setPassword("");
         } else {
           window.alert(json["error"]);
           setJwt("");
