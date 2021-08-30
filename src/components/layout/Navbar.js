@@ -135,8 +135,8 @@ const Navbar = (props) => {
                   <MenuItem onClick={handleClose}>Profile</MenuItem>
                   <MenuItem onClick={handleClose}>Account Settings</MenuItem>
                 </Menu>
-                <Button edge="end" color="inherit" onClick={handleSignup}>
-                  Signup
+                <Button edge="end" color="inherit" onClick={props.onClickLogout}>
+                  Logout
                 </Button>
             </div>
           )}
