@@ -69,6 +69,8 @@ function App() {
         } else {
           window.alert(json["error"]);
           setJwt("");
+          setEmail("");
+          setPassword("");
         }
       })
       .catch(error => {
