@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Sidebar from './components/layout/Sidebar';
 import Navbar from './components/layout/Navbar';
 import { makeStyles } from '@material-ui/core';
@@ -40,16 +40,16 @@ const useStyles = makeStyles(theme => ({
 // Main App
 function App() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
-  const [auth, setAuth] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [jwtToken, setJwt] = React.useState("");
   const classes = useStyles();
 
   const handleLogin = (e) => {
     e.preventDefault()
-
     const options = {
       method: 'POST',
+      mode: 'cors',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: email,
@@ -57,29 +57,32 @@ function App() {
       }),
     };
 
-    fetch('http://localhost:80/api/auth/login', options)
+    fetch('http://localhost:81/api/auth/login', options)
       .then(response => {
-        return response.json();
+        return response.json()
       })
-      .then((json) => {
+      .then(json => {
         if (json["message"] === "Login Successful!") {
-          setAuth(!auth)
+          setJwt(json["token_i"]);
+        } else {
+          window.alert(json["error"]);
+          setJwt("");
         }
       })
       .catch(error => {
-        console.log(error)
-      })
+        console.log(error);
+      });
   }
 
   const closedPage = (
     <div>
-      <Navbar onClick={() => setDrawerOpen(!drawerOpen)}/>
+      <Navbar onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={() => setJwt("")}/>
     </div>
   );
 
   const openPage = (
     <div>
-      <Navbar className={classes.appBarShift} onClick={() => setDrawerOpen(!drawerOpen)}/>
+      <Navbar className={classes.appBarShift} onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={() => setJwt("")}/>
       <Sidebar /> 
     </div>
   );
@@ -102,7 +105,7 @@ function App() {
 
   return (
     <div className='App'>
-      { auth ? mainApp : welcomePage }
+      { jwtToken === "" ? welcomePage : mainApp }
     </div>
   );
 }
