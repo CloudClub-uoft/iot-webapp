@@ -42,7 +42,7 @@ function App() {
   const [drawerOpen, setDrawerOpen] = React.useState(false);
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-  const [jwtToken, setJwt] = React.useState("");
+  const [auth, setAuth] = React.useState("");
   const classes = useStyles();
 
   const handleLogin = (e) => {
@@ -50,27 +50,24 @@ function App() {
     const options = {
       method: 'POST',
       mode: 'cors',
+      credentials: 'include',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         email: email,
         password: password
       }),
     };
-
     fetch('http://localhost:81/api/auth/login', options)
       .then(response => {
         return response.json()
       })
       .then(json => {
         if (json["message"] === "Login Successful!") {
-          setJwt(json["token_i"]);
           setEmail("");
           setPassword("");
+          setAuth(true);
         } else {
           window.alert(json["error"]);
-          setJwt("");
-          setEmail("");
-          setPassword("");
         }
       })
       .catch(error => {
@@ -78,15 +75,32 @@ function App() {
       });
   }
 
+  const handleLogout = (e) => {
+    document.cookie.split(";").forEach((c) => {
+      document.cookie = c
+        .replace(/^ +/, "")
+        .replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/");
+    });
+    setAuth(false);
+  }
+
+  useEffect(() => {
+    if (document.cookie) {
+      setAuth(true);
+    } else {
+      setAuth(false);
+    }
+  })
+
   const closedPage = (
     <div>
-      <Navbar onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={() => setJwt("")}/>
+      <Navbar onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={handleLogout}/>
     </div>
   );
 
   const openPage = (
     <div>
-      <Navbar className={classes.appBarShift} onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={() => setJwt("")}/>
+      <Navbar className={classes.appBarShift} onClick={() => setDrawerOpen(!drawerOpen)} onClickLogout={handleLogout}/>
       <Sidebar /> 
     </div>
   );
@@ -109,7 +123,7 @@ function App() {
 
   return (
     <div className='App'>
-      { jwtToken === "" ? welcomePage : mainApp }
+      { (!auth && document.cookie === "") ? welcomePage : mainApp }
     </div>
   );
 }
