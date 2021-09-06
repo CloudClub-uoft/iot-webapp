@@ -8,7 +8,6 @@ import SendIcon from '@material-ui/icons/Send';
 import Typography from '@material-ui/core/Typography';
 
 /* TODO: 
-- Revamp fetch
 - Center text inputs
 - Error handling (correct input format for mac, name)
 */
@@ -44,8 +43,7 @@ export default function Register() {
     const classes = useStyles();
     const [deviceId, setDeviceId] = useState("");
     const [friendlyName, setFriendlyName] = useState("");
-    // const apiKeyValue = "x";
-    const [apiKeyValue, setApiKeyValue] = useState("");
+
     return (
         <div className={classes.register}>
             <form className={classes.root} noValidate autoComplete="off">
@@ -76,23 +74,12 @@ export default function Register() {
                     color="primary"
                     className={classes.button}
                     endIcon={<SendIcon />}
-                    onClick={() => fetch_api_key(deviceId, friendlyName, setApiKeyValue)}
+                    onClick={() => fetch_api_key(deviceId, friendlyName)}
                 >
-                    Get API Key
+                    Register Device
                 </Button>
                 <br></br>
-                <TextField
-                    id="api-key-text-field"
-                    label="API Key"
-                    // InputProps={{
-                    //     readOnly: true,
-                    // }}
-                    inputProps={{min: 0, style: { textAlign: 'center' }}}
-                    variant="outlined"
-                    value={apiKeyValue}
-                />
-                <br></br>
-                <Typography id="test" align="inherit" className={classes.text} variant="h6" >Your API Key Here</Typography>
+                <Typography id="register-toast" align="inherit" className={classes.text} variant="h6" ></Typography>
                 <br></br>
             </form>
         </div>
@@ -100,32 +87,32 @@ export default function Register() {
     
 }
 
-// Use /device/register route to register device with MAC address and Name provided
-const fetch_api_key = (deviceId, friendlyName, setApiKeyValue) => {
-    const server_ip = 'localhost'; 
-    const register_url = `http://${server_ip}:80/device/register`;
+// Use /api/register route to register device with MAC address and Name provided
+const fetch_api_key = (deviceId, friendlyName) => {
     const options = {
         method: 'POST',
+        mode: 'cors',
+        credentials: 'include',
         headers: { 
             'Content-Type': 'application/json',
+            'Origin': 'http://localhost:8082'
         },
-        body: JSON.stringify({ 
-            "deviceId": deviceId, //"4D01F81F805F"
-            "friendlyName": friendlyName //"Ian Test"
-        })
+        body: JSON.stringify({
+            "deviceId": deviceId, 
+            "friendlyName": friendlyName 
+        }),
     };
 
-    // TODO: handle errors correctly
-    postData(register_url, options)
-    .then(data => {
-        console.log(data);
-        // Update API Key text box
-        let api_key_text_field = document.getElementById('test');
-        try {
-            setApiKeyValue(data.apiKey);
-            api_key_text_field.innerHTML = data.apiKey;
-        } catch {
-            api_key_text_field.innerHTML = "Handle this error better";
+    postData('http://localhost:8080/api/register', options)
+    .then(response => {
+        return response.json();
+    })
+    .then(json => {
+        let api_key_text_field = document.getElementById('register-toast');
+        if (json['Status'] === 'Success') {
+            api_key_text_field.innerHTML = "Device Successfully Registered!";
+        } else {
+            api_key_text_field.innerHTML = json['error'];
         }
     })
     .catch(err => {
