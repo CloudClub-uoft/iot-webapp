@@ -95,7 +95,6 @@ const fetch_api_key = (deviceId, friendlyName) => {
         credentials: 'include',
         headers: { 
             'Content-Type': 'application/json',
-            'Origin': 'http://localhost:8082'
         },
         body: JSON.stringify({
             "deviceId": deviceId, 
@@ -104,9 +103,6 @@ const fetch_api_key = (deviceId, friendlyName) => {
     };
 
     postData('http://localhost:8080/api/register', options)
-    .then(response => {
-        return response.json();
-    })
     .then(json => {
         let api_key_text_field = document.getElementById('register-toast');
         if (json['Status'] === 'Success') {
