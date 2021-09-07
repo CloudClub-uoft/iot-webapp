@@ -72,6 +72,9 @@ export default function Register() {
                 <Button
                     variant="contained"
                     color="primary"
+                    style={{
+                        backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)", 
+                    }}
                     className={classes.button}
                     endIcon={<SendIcon />}
                     onClick={() => fetch_api_key(deviceId, friendlyName)}
