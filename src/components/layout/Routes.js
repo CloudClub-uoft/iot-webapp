@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 
 import CardGrid from './cards/CardGrid';
 import Register from './Register';
+import Unregister from './Unregister';
 
 export function Main() {
     return (
@@ -24,7 +25,7 @@ export function Page1() {
 export function Page2() {
     return(
         <>
-        <Typography align="center" variant="h1">Hey, welcome to Page2.</Typography>
+        <Unregister/>
         </>
     );
 }
