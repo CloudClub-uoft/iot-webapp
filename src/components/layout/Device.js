@@ -28,7 +28,7 @@ export default function DeviceList() {
                 <ListItemAvatar>
                     <DeviceStatus />
                 </ListItemAvatar>
-                <ListItemText primary="Device 1" secondary="Online | Last Ping: 15ms" />
+                <ListItemText primary="Friendly Name" secondary="Device ID" />
             </ListItem>
             <ListItem>
                 <ListItemAvatar>
