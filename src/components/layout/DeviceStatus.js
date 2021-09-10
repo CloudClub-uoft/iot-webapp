@@ -48,7 +48,7 @@ export default function DeviceStatus() {
     return (
         <div className={classes.root}>
             <StyledBadge
-                overlap="circular"
+                overlap="circle"
                 anchorOrigin={{
                     vertical: 'bottom',
                     horizontal: 'right',
