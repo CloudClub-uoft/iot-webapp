@@ -57,7 +57,7 @@ export default function Unregister() {
                     }}
                     className={classes.button}
                     endIcon={<SendIcon />}
-                    onClick={() => fetch_api_key(deviceId)}
+                    onClick={() => unregister_device(deviceId)}
                 >
                     unregister Device
                 </Button>
@@ -71,7 +71,7 @@ export default function Unregister() {
 }
 
 // Use /api/unregister route to unregister device with MAC address and Name provided
-const fetch_api_key = (deviceId) => {
+const unregister_device = (deviceId) => {
     const options = {
         method: 'POST',
         mode: 'cors',
