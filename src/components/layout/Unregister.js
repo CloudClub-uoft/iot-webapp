@@ -59,7 +59,7 @@ export default function Unregister() {
                     endIcon={<SendIcon />}
                     onClick={() => unregister_device(deviceId)}
                 >
-                    unregister Device
+                    Unregister Device
                 </Button>
                 <br></br>
                 <Typography id="unregister-toast" align="inherit" className={classes.text} variant="h6" ></Typography>
