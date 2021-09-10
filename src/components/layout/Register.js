@@ -77,7 +77,7 @@ export default function Register() {
                     }}
                     className={classes.button}
                     endIcon={<SendIcon />}
-                    onClick={() => fetch_api_key(deviceId, friendlyName)}
+                    onClick={() => register_device(deviceId, friendlyName)}
                 >
                     Register Device
                 </Button>
@@ -91,7 +91,7 @@ export default function Register() {
 }
 
 // Use /api/register route to register device with MAC address and Name provided
-const fetch_api_key = (deviceId, friendlyName) => {
+const register_device = (deviceId, friendlyName) => {
     const options = {
         method: 'POST',
         mode: 'cors',
