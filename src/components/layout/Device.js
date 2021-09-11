@@ -8,8 +8,9 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import DeviceStatus from './DeviceStatus';
 import PropTypes from 'prop-types';
+import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = {
     root: {
         width: '100%',
         maxWidth: 360,
@@ -17,7 +18,11 @@ const styles = theme => ({
         margin: "auto",
         textAlign: "center"
     },
-});
+    text: {
+        margin: "auto",
+        textAlign: "center"
+    }
+};
 
 class DeviceList extends Component {
     constructor(props) {
@@ -48,8 +53,8 @@ class DeviceList extends Component {
                 console.log("Retrieved devices!");
                 return json.json(json.body);
             } else {
-                console.log(json['error']);
-                // Add toast
+                let toast_field = document.getElementById('register-toast');
+                toast_field.innerHTML = json['error'];
             }
         })
         .then(deviceList => {
@@ -64,10 +69,13 @@ class DeviceList extends Component {
     }
 
     render() {
-        const classes = this.props;
+        const { classes } = this.props;
 
         return (
             <>
+            <br></br>
+            <Typography align="center" variant="h3">Online Devices</Typography>
+            <Typography align="inherit" className={classes.text} variant="subtitle1">A list of all of your devices.</Typography>
             <List className={classes.root}>
                 {
                     this.state.loading 
