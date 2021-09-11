@@ -34,7 +34,6 @@ export function Page2() {
 export function Page3() {
     return(
         <>
-        <Typography align="center" variant="h2">Online Devices</Typography>
         <Device />
         </>
     );
