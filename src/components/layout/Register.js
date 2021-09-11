@@ -3,14 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { useState } from 'react';
-import Icon from '@material-ui/core/Icon';
 import SendIcon from '@material-ui/icons/Send';
 import Typography from '@material-ui/core/Typography';
-
-/* TODO: 
-- Center text inputs
-- Error handling (correct input format for mac, name)
-*/
+import Tooltip from '@material-ui/core/Tooltip';
+import Zoom from '@material-ui/core/Zoom';
 
 const useStyles = makeStyles((theme) => ({
     register: {
@@ -35,6 +31,9 @@ const useStyles = makeStyles((theme) => ({
     text: {
         margin: "auto",
         textAlign: "center"
+    },
+    tooltipWidth: {
+        maxWidth: '25ch',
     }
 }));
 
@@ -51,23 +50,43 @@ export default function Register() {
                 <Typography align="inherit" className={classes.text} variant="h3">Welcome.</Typography>
                 <Typography align="inherit" className={classes.text} variant="subtitle1">Register your device here.</Typography>
                 <br></br>
-                <TextField 
-                    id="input-device-id" 
-                    label="Device ID" 
-                    variant="outlined" 
-                    required={true}
-                    inputProps={{min: 0, style: { padding:"0px 0px 0px 1.5ch"}}} // ideally, make this more portable
-                    onChange={e => setDeviceId(e.target.value)}
-                /> 
+                <Tooltip 
+                    title="Enter your 12-digit MAC address without colons here, e.g. 123456ABCDEF" 
+                    placement="left" 
+                    arrow
+                    TransitionComponent={Zoom}
+                    enterDelay={500}
+                    leaveDelay={200}
+                    classes={{ tooltip: classes.tooltipWidth }}
+                >
+                    <TextField 
+                        id="input-device-id" 
+                        label="Device ID" 
+                        variant="outlined" 
+                        required={true}
+                        inputProps={{min: 0, style: { padding:"0px 0px 0px 1.5ch"}}} // ideally, make this more portable
+                        onChange={e => setDeviceId(e.target.value)}
+                    /> 
+                </Tooltip>
                 <br></br>
-                <TextField 
-                    id="input-friendly-name" 
-                    label="Friendly Name" 
-                    variant="outlined" 
-                    required={true}
-                    inputProps={{min: 0, style: { padding:"0px 0px 0px 1.5ch"}}}
-                    onChange={e => setFriendlyName(e.target.value)} 
-                /> 
+                <Tooltip 
+                    title="Enter a friendly name for your device here, e.g. Alexandra's IoT Humidity Device" 
+                    placement="left" 
+                    arrow
+                    TransitionComponent={Zoom}
+                    enterDelay={500}
+                    leaveDelay={200}
+                    classes={{ tooltip: classes.tooltipWidth }}
+                >
+                    <TextField 
+                        id="input-friendly-name" 
+                        label="Friendly Name" 
+                        variant="outlined" 
+                        required={true}
+                        inputProps={{min: 0, style: { padding:"0px 0px 0px 1.5ch"}}}
+                        onChange={e => setFriendlyName(e.target.value)} 
+                    /> 
+                </Tooltip>
                 <br></br>
                 <Button
                     variant="contained"
@@ -107,11 +126,11 @@ const register_device = (deviceId, friendlyName) => {
 
     postData('http://localhost:8080/api/register', options)
     .then(json => {
-        let api_key_text_field = document.getElementById('register-toast');
+        let toast_field = document.getElementById('register-toast');
         if (json['Status'] === 'Success') {
-            api_key_text_field.innerHTML = "Device Successfully Registered!";
+            toast_field.innerHTML = "Device Successfully Registered!";
         } else {
-            api_key_text_field.innerHTML = json['error'];
+            toast_field.innerHTML = json['error'];
         }
     })
     .catch(err => {

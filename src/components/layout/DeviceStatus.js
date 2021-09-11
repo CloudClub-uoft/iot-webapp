@@ -1,8 +1,10 @@
+// Device Status Components
+
 import React from 'react';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import Badge from '@material-ui/core/Badge';
 import Avatar from '@material-ui/core/Avatar';
-import ImageIcon from '@material-ui/icons/Image';
+import ComputerIcon from '@material-ui/icons/Computer';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,6 +13,9 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(1),
       },
     },
+    avatar: {
+      backgroundImage: "linear-gradient(135deg,#1292fd 25%,#50BDE4 75%)"
+    }
 }));
 
 const StyledBadge = withStyles((theme) => ({
@@ -55,8 +60,8 @@ export default function DeviceStatus() {
                 }}
                 variant="dot"
             >
-              <Avatar>
-                <ImageIcon />
+              <Avatar className={classes.avatar}>
+                <ComputerIcon />
               </Avatar>
             </StyledBadge>
         </div>
