@@ -60,7 +60,8 @@ export default function Register() {
                     classes={{ tooltip: classes.tooltipWidth }}
                 >
                     <TextField 
-                        id="input-device-id" 
+                        id="input-device-id"
+                        aria-label="device-id"
                         label="Device ID" 
                         variant="outlined" 
                         required={true}
@@ -101,7 +102,7 @@ export default function Register() {
                     Register Device
                 </Button>
                 <br></br>
-                <Typography id="register-toast" align="inherit" className={classes.text} variant="h6" ></Typography>
+                <Typography aria-label="toast" id="register-toast" align="inherit" className={classes.text} variant="h6" ></Typography>
                 <br></br>
             </form>
         </div>
