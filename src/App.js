@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core';
 import Sidebar from './components/layout/Sidebar';
 import Navbar from './components/layout/Navbar';
-import { makeStyles } from '@material-ui/core';
 
 import {
   BrowserRouter as Router,
@@ -57,7 +57,7 @@ function App() {
         password: password
       }),
     };
-    fetch('http://localhost:81/api/auth/login', options)
+    fetch('http://localhost:8080/api/auth/login', options)
       .then(response => {
         return response.json()
       })
@@ -135,7 +135,7 @@ const RouterSwitch = () => {
       <Route exact path="/">
         <Main />
       </Route>
-      <Route path="/page1">
+      <Route path="/device">
         <Page1 />
       </Route>
       <Route path="/page2">
@@ -148,6 +148,7 @@ const RouterSwitch = () => {
         <HttpNotFound />  
       </Route>
     </Switch>
+
   );
 }
 

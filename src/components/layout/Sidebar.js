@@ -27,7 +27,7 @@ const Sidebar = (props) => {
             </Link>
           </ListItem>
           <ListItem button>
-            <Link to="/page1">
+            <Link to="/device">
               <HomeIcon fontSize='large'/>  
             </Link>
           </ListItem>
